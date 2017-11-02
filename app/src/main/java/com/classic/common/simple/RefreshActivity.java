@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.classic.adapter.BaseAdapterHelper;
 import com.classic.adapter.CommonRecyclerAdapter;
@@ -43,10 +45,13 @@ public class RefreshActivity extends AbsActivity implements SwipeRefreshLayout.O
         }, DELAY);
     }
 
-    private class NewsAdapter extends CommonRecyclerAdapter<String> {
+    private class NewsAdapter extends CommonRecyclerAdapter<String> implements CommonRecyclerAdapter.OnItemClickListener {
+        protected Context context;
 
         NewsAdapter(@NonNull Context context) {
             super(context, R.layout.item_news);
+            this.context = context;
+            setOnItemClickListener(this);
         }
 
         @Override public int getItemCount() {
@@ -58,6 +63,11 @@ public class RefreshActivity extends AbsActivity implements SwipeRefreshLayout.O
                   .setText(R.id.item_single_picture_author, "作者：续写经典")
                   .setText(R.id.item_single_picture_date, "2017-07-07 10:36")
                   .setImageResource(R.id.item_single_picture_cover, R.drawable.phone);
+        }
+
+        @Override
+        public void onItemClick(RecyclerView.ViewHolder viewHolder, View view, int i) {
+            Toast.makeText(context, "点击:" + i, Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -63,6 +63,7 @@ import java.util.ArrayList;
         mLoadingViewResId = a.getResourceId(R.styleable.MultipleStatusView_loadingView, R.layout.loading_view);
         mNoNetworkViewResId = a.getResourceId(R.styleable.MultipleStatusView_noNetworkView, R.layout.no_network_view);
         mContentViewResId = a.getResourceId(R.styleable.MultipleStatusView_contentView, NULL_RESOURCE_ID);
+        mLoadingNoContent = a.getBoolean(R.styleable.MultipleStatusView_noNetworkView, true);
         a.recycle();
     }
 
@@ -202,7 +203,30 @@ import java.util.ArrayList;
             mOtherIds.add(mLoadingView.getId());
             addView(mLoadingView, 0, layoutParams);
         }
-        showViewById(mLoadingView.getId());
+        showLoadingView(mLoadingView.getId());
+    }
+
+    /**
+     * 显示loading的时候是否隐藏content
+     */
+    protected boolean mLoadingNoContent = true;
+
+    private void showLoadingView(int viewId) {
+        final int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View view = getChildAt(i);
+            //显示loading
+            if (viewId == view.getId()){
+                view.setVisibility(View.VISIBLE);
+                bringChildToFront(view);
+            }else {
+                if (mLoadingNoContent || mOtherIds.contains(view.getId())) {
+                    view.setVisibility(View.GONE);
+                } else {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 
     /**
@@ -262,7 +286,7 @@ import java.util.ArrayList;
     }
 
     private View inflateView(int layoutId) {
-        return mInflater.inflate(layoutId, null);
+        return mInflater.inflate(layoutId, this, false);
     }
 
     private void showViewById(int viewId) {

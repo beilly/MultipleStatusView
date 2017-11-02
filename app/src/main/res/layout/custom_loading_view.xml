@@ -4,13 +4,14 @@
     android:id="@+id/loading_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#453afd8f"
+    android:clickable="true"
+    android:focusable="true">
     <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="@dimen/custom_avloading_height"
         android:layout_height="@dimen/custom_avloading_height"
         android:layout_centerInParent="true"
         android:visibility="visible"
         app:indicatorName="BallClipRotateMultipleIndicator"
-        app:indicatorColor="@color/colorAccent"
-        />
+        app:indicatorColor="@color/colorAccent" />
 </RelativeLayout>
