@@ -21,8 +21,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':multiple-status-view')
-//    compile 'com.classic.common:multiple-status-view:1.3'
+//    compile project(':multiple-status-view')
+    compile 'com.github.beilly:MultipleStatusView:master-SNAPSHOT'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     //https://github.com/81813780/AVLoadingIndicatorView
