@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.jfrog.bintray'
 
+group='com.github.beilly'
 //version = "1.3"
 android {
 //    resourcePrefix "MultipleStatusView"
